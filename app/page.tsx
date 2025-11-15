@@ -194,11 +194,8 @@ export default function HomePage() {
 
       <header className="relative z-10 flex items-center justify-between px-6 py-6 backdrop-blur-sm bg-black/20 border-b border-white/10">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-red-500/25">
-            S
-          </div>
+          <img src="/logo.png" alt="Schemer" className="h-10 w-auto rounded-lg" />
           <div className="hidden sm:block">
-            <h1 className="text-white font-semibold text-lg">Schemer</h1>
             <p className="text-white/60 text-xs">Haverford College</p>
           </div>
         </div>
