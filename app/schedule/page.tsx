@@ -192,7 +192,7 @@ export default function SchedulePage() {
                         {time}
                       </div>
                       {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((day) => {
-                        let courseAtTime = null
+                        let courseAtTime: any = null
                         let courseIndex = -1
                         
                         semesterCourses.forEach((course, index) => {
