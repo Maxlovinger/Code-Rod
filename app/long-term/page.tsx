@@ -81,7 +81,7 @@ export default function LongTermPlanPage() {
         course_id: course.id,
         course_code: course.code,
         course_title: course.title,
-        credits: course.credits,
+        credits: 1,
         department: course.department,
         semester: selectedSemester,
         year: selectedYear
@@ -162,9 +162,9 @@ export default function LongTermPlanPage() {
 
               {/* Fall Semester */}
               <div className="mb-6">
-                <h3 className="text-lg font-medium text-white/90 mb-3">Fall {year - 1}</h3>
+                <h3 className="text-lg font-medium text-white/90 mb-3">Fall {graduationYear - 4 + index}</h3>
                 <div className="space-y-2">
-                  {getCoursesForYearSemester(year, "Fall").map((course) => (
+                  {getCoursesForYearSemester(graduationYear - 4 + index, "Fall").map((course) => (
                     <div 
                       key={course.id} 
                       className="flex items-start justify-between p-3 bg-white/5 border border-white/10 rounded-lg group"
@@ -188,16 +188,16 @@ export default function LongTermPlanPage() {
                 </div>
                 <div className="mt-3 pt-3 border-t border-white/20">
                   <p className="text-xs text-white/70">
-                    Credits: <span className="font-medium text-white">{getCoursesForYearSemester(year, "Fall").reduce((sum, c) => sum + c.credits, 0)}</span>
+                    Credits: <span className="font-medium text-white">{getCoursesForYearSemester(graduationYear - 4 + index, "Fall").reduce((sum, c) => sum + c.credits, 0)}</span>
                   </p>
                 </div>
               </div>
 
               {/* Spring Semester */}
               <div>
-                <h3 className="text-lg font-medium text-white/90 mb-3">Spring {year}</h3>
+                <h3 className="text-lg font-medium text-white/90 mb-3">Spring {graduationYear - 4 + index + 1}</h3>
                 <div className="space-y-2">
-                  {getCoursesForYearSemester(year, "Spring").map((course) => (
+                  {getCoursesForYearSemester(graduationYear - 4 + index + 1, "Spring").map((course) => (
                     <div 
                       key={course.id} 
                       className="flex items-start justify-between p-3 bg-white/5 border border-white/10 rounded-lg group"
@@ -221,7 +221,7 @@ export default function LongTermPlanPage() {
                 </div>
                 <div className="mt-3 pt-3 border-t border-white/20">
                   <p className="text-xs text-white/70">
-                    Credits: <span className="font-medium text-white">{getCoursesForYearSemester(year, "Spring").reduce((sum, c) => sum + c.credits, 0)}</span>
+                    Credits: <span className="font-medium text-white">{getCoursesForYearSemester(graduationYear - 4 + index + 1, "Spring").reduce((sum, c) => sum + c.credits, 0)}</span>
                   </p>
                 </div>
               </div>

@@ -1,12 +1,97 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { User, Calendar, BookOpen, Target, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { AnimatedBackground } from "@/components/animated-background"
 import { AppHeader } from "@/components/app-header"
+import { supabase } from "@/lib/supabase"
 
 export default function StudentDashboard() {
+  const [studentData, setStudentData] = useState<any>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchStudentData = async () => {
+      const userEmail = localStorage.getItem('userEmail')
+      if (!userEmail) return
+
+      try {
+        // Fetch student profile
+        const { data: profile, error: profileError } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('email', userEmail)
+          .single()
+
+        if (profileError || !profile) {
+          console.error('Error fetching profile:', profileError)
+          setLoading(false)
+          return
+        }
+
+        // Fetch planned courses
+        let { data: plannedCourses } = await supabase
+          .from('planned_courses')
+          .select('*')
+          .eq('user_id', profile.id)
+
+        // If no results with user_id, try with email
+        if (!plannedCourses || plannedCourses.length === 0) {
+          const { data: plannedByEmail } = await supabase
+            .from('planned_courses')
+            .select('*')
+            .eq('user_email', userEmail)
+          
+          plannedCourses = plannedByEmail || []
+        }
+
+        // Fetch assigned advisor
+        const { data: advisorData } = await supabase
+          .from('advisor_students')
+          .select('advisor_email')
+          .eq('student_id', profile.id)
+
+        const assignedAdvisor = advisorData?.[0]?.advisor_email || 'Not assigned'
+
+        // Calculate progress
+        const completedCourses = profile.completed_courses || []
+        const creditsCompleted = completedCourses.reduce((total: number, course: any) => {
+          return total + (course.credits || 0)
+        }, 0)
+
+        const plannedCredits = plannedCourses.reduce((total: number, course: any) => {
+          return total + (course.credits || 0)
+        }, 0)
+
+        const totalCredits = creditsCompleted + plannedCredits
+        const degreeProgress = Math.round((totalCredits / 32) * 100)
+
+        // Calculate expected graduation
+        const currentYear = new Date().getFullYear()
+        const classYear = profile.class_year || currentYear + 4
+        const graduationSemester = classYear <= currentYear + 1 ? 'Spring' : 'Spring'
+
+        setStudentData({
+          profile,
+          creditsCompleted: totalCredits,
+          currentCourses: plannedCourses.length,
+          degreeProgress,
+          expectedGraduation: `${graduationSemester} ${classYear}`,
+          major: Array.isArray(profile.major) ? profile.major.join(', ') : 'Undeclared',
+          minor: Array.isArray(profile.minor) ? profile.minor.join(', ') : 'None',
+          advisor: assignedAdvisor
+        })
+      } catch (error) {
+        console.error('Failed to fetch student data:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchStudentData()
+  }, [])
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       <AnimatedBackground />
@@ -98,19 +183,19 @@ export default function StudentDashboard() {
           <h2 className="text-xl font-semibold text-white mb-6">Quick Overview</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="text-center">
-              <p className="text-2xl font-bold text-red-400">15</p>
+              <p className="text-2xl font-bold text-red-400">{loading ? '...' : studentData?.creditsCompleted || 0}</p>
               <p className="text-sm text-white/70">Credits Completed</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-green-400">4</p>
-              <p className="text-sm text-white/70">Current Courses</p>
+              <p className="text-2xl font-bold text-green-400">{loading ? '...' : studentData?.currentCourses || 0}</p>
+              <p className="text-sm text-white/70">Planned Courses</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-blue-400">48%</p>
+              <p className="text-2xl font-bold text-blue-400">{loading ? '...' : studentData?.degreeProgress || 0}%</p>
               <p className="text-sm text-white/70">Degree Progress</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-purple-400">Spring 2027</p>
+              <p className="text-2xl font-bold text-purple-400">{loading ? '...' : studentData?.expectedGraduation || 'TBD'}</p>
               <p className="text-sm text-white/70">Expected Graduation</p>
             </div>
           </div>
@@ -119,12 +204,12 @@ export default function StudentDashboard() {
           <div className="mt-6 pt-6 border-t border-white/20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
               <div>
-                <p className="text-white/70">Major: <span className="text-white font-medium">Computer Science</span></p>
-                <p className="text-white/70 mt-1">Minor: <span className="text-white font-medium">Mathematics</span></p>
+                <p className="text-white/70">Major: <span className="text-white font-medium">{loading ? '...' : studentData?.major || 'Undeclared'}</span></p>
+                <p className="text-white/70 mt-1">Minor: <span className="text-white font-medium">{loading ? '...' : studentData?.minor || 'None'}</span></p>
               </div>
               <div>
-                <p className="text-white/70">Class Year: <span className="text-white font-medium">2025</span></p>
-                <p className="text-white/70 mt-1">Advisor: <span className="text-white font-medium">Dr. Smith, Dr. Johnson</span></p>
+                <p className="text-white/70">Class Year: <span className="text-white font-medium">{loading ? '...' : studentData?.profile?.class_year || 'Not set'}</span></p>
+                <p className="text-white/70 mt-1">Advisor: <span className="text-white font-medium">{loading ? '...' : studentData?.advisor || 'Not assigned'}</span></p>
               </div>
             </div>
           </div>

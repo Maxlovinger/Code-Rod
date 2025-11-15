@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { User, GraduationCap, Mail, Calendar, BookOpen, Plus, X, Check, Edit, Save } from "lucide-react"
+import { User, GraduationCap, Mail, Calendar, BookOpen, Plus, X, Check, Edit, Save, Copy } from "lucide-react"
 import type { StudentProfile, CompletedCourse, Semester } from "@/lib/types"
 import { mockCourses } from "@/lib/mock-data"
 import { saveStudentProfile, loadStudentProfile } from "@/lib/storage"
@@ -61,6 +61,7 @@ export default function ProfilePage() {
   const [selectedMajors, setSelectedMajors] = useState<string[]>([])
   const [selectedMinors, setSelectedMinors] = useState<string[]>([])
   const [selectedAdvisors, setSelectedAdvisors] = useState<string[]>([])
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null)
 
   // Load profile and advisors on mount
   useEffect(() => {
@@ -453,166 +454,68 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Completed Courses */}
+        {/* Contact Advisor */}
         <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg shadow-red-500/10 p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-white flex items-center gap-2">
-              <GraduationCap size={24} className="text-purple-400" />
-              Completed Courses
-            </h2>
-            <button
-              onClick={() => setShowAddCourse(true)}
-              className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/40 hover:scale-105 border border-red-400/30 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-300 flex items-center gap-2"
-            >
-              <Plus size={20} />
-              Add Course
-            </button>
-          </div>
+          <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+            <Mail size={24} className="text-green-400" />
+            Contact Your Advisor
+          </h2>
 
-          {profile.completedCourses.length === 0 ? (
-            <div className="text-center py-12 bg-white/5 border border-white/10 rounded-lg">
-              <BookOpen className="mx-auto text-white/40" size={48} />
-              <p className="text-white/70 mt-4">No completed courses added yet</p>
-              <p className="text-sm text-white/60 mt-2">
-                Add courses you've already completed to track your progress
-              </p>
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {profile.completedCourses.map((course) => (
-                <div
-                  key={course.courseId}
-                  className="flex items-start justify-between p-4 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition-colors"
-                >
-                  <div className="flex-1">
-                    <div className="flex items-start gap-3">
-                      <div className="flex-1">
-                        <p className="font-semibold text-white">{course.courseCode}</p>
-                        <p className="text-white/90 mt-1">{course.courseTitle}</p>
-                        <div className="flex flex-wrap gap-3 mt-2 text-sm text-white/70">
-                          <span>
-                            {course.semester} {course.year}
-                          </span>
-                          <span>{course.credits} credits</span>
-                        </div>
+          {Array.isArray(selectedAdvisors) && selectedAdvisors.length > 0 ? (
+            <div className="space-y-4">
+              {selectedAdvisors.map((advisorName, index) => {
+                const advisor = availableAdvisors.find(a => a.name === advisorName)
+                return (
+                  <div key={index} className="bg-white/5 border border-white/10 rounded-lg p-4 hover:bg-white/10 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-semibold text-white">{advisorName}</p>
+                        <p className="text-white/70 text-sm mt-1">Academic Advisor</p>
                       </div>
                       <button
-                        onClick={() => removeCompletedCourse(course.courseId)}
-                        className="text-red-400 hover:text-red-300 transition-colors p-2 hover:bg-red-500/20 rounded"
+                        onClick={() => {
+                          const email = `${advisorName.toLowerCase().replace(' ', '.')}@haverford.edu`
+                          navigator.clipboard.writeText(email)
+                          setCopiedEmail(email)
+                          setTimeout(() => setCopiedEmail(null), 2000)
+                        }}
+                        className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center gap-2 shadow-lg shadow-green-500/25 hover:shadow-xl hover:shadow-green-500/40 hover:scale-105 border border-green-400/30"
                       >
-                        <X size={20} />
+                        {copiedEmail === `${advisorName.toLowerCase().replace(' ', '.')}@haverford.edu` ? (
+                          <>
+                            <Check size={16} />
+                            Copied!
+                          </>
+                        ) : (
+                          <>
+                            <Copy size={16} />
+                            Copy Email
+                          </>
+                        )}
                       </button>
                     </div>
+                    <div className="mt-3 pt-3 border-t border-white/20">
+                      <p className="text-white/60 text-sm">
+                        Email: {advisorName.toLowerCase().replace(' ', '.')}@haverford.edu
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-12 bg-white/5 border border-white/10 rounded-lg">
+              <Mail className="mx-auto text-white/40" size={48} />
+              <p className="text-white/70 mt-4">No advisor assigned</p>
+              <p className="text-sm text-white/60 mt-2">
+                Select an advisor in your profile to see their contact information
+              </p>
             </div>
           )}
-
-
         </div>
       </main>
 
-      {/* Add Course Modal */}
-      {showAddCourse && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-6">
-          <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg shadow-red-500/10 max-w-2xl w-full max-h-[90vh] overflow-hidden">
-            <div className="p-6 border-b border-white/20">
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold text-white">Add Completed Course</h2>
-                <button
-                  onClick={() => {
-                    setShowAddCourse(false)
-                    setSelectedCourse("")
-                  }}
-                  className="text-white/40 hover:text-white/70 transition-colors"
-                >
-                  <X size={24} />
-                </button>
-              </div>
-            </div>
 
-            <div className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-white/80 mb-2">
-                  Select Course
-                </label>
-                <select
-                  value={selectedCourse}
-                  onChange={(e) => setSelectedCourse(e.target.value)}
-                  className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 text-white placeholder:text-white/40 bg-black"
-                >
-                  <option value="">Choose a course</option>
-                  {mockCourses.map((course) => (
-                    <option key={course.id} value={course.id}>
-                      {course.code} - {course.title}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-white/80 mb-2">
-                    Semester Completed
-                  </label>
-                  <select
-                    value={selectedSemester}
-                    onChange={(e) => setSelectedSemester(e.target.value as Semester)}
-                    className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 text-white placeholder:text-white/40 bg-black"
-                  >
-                    {SEMESTERS.map((semester) => (
-                      <option key={semester} value={semester}>
-                        {semester}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-white/80 mb-2">
-                    Year Completed
-                  </label>
-                  <select
-                    value={selectedYear}
-                    onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-                    className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500/50 text-white placeholder:text-white/40 bg-black"
-                  >
-                    {completionYears.map((year) => (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="flex gap-3 pt-4">
-                <button
-                  onClick={() => {
-                    setShowAddCourse(false)
-                    setSelectedCourse("")
-                  }}
-                  className="flex-1 px-4 py-2 border border-white/20 rounded-lg hover:bg-white/5 transition-colors text-white"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={addCompletedCourse}
-                  disabled={!selectedCourse}
-                  className={`flex-1 px-4 py-2 rounded-lg font-medium transition-colors ${
-                    selectedCourse
-                      ? "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/40 hover:scale-105 border border-red-400/30 text-white"
-                      : "bg-white/10 text-white/40 cursor-not-allowed border border-white/10"
-                  }`}
-                >
-                  Add Course
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-// File: /Users/aidanrodriguez/Documents/Code-Rod/app/schedule/page.tsx
+// File: /Users/max_lovinger/Documents/Code-Rod/app/schedule/page.tsx
 import * as entry from '../../../../app/schedule/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

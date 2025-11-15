@@ -24,12 +24,14 @@ export function AppHeader({ showGetStarted = false, currentPage }: AppHeaderProp
   // Check if on student pages as fallback
   const isStudent = mounted && (userType === 'student' || window.location.pathname.startsWith('/student'))
 
-  const navLinks = [
-    { href: "/schedule", label: "Schedule" },
-    { href: "/requirements", label: "Requirements" },
-    { href: "/profile", label: "Profile" },
-    ...(!isStudent ? [{ href: "/advisor", label: "Advisor" }] : []),
-  ]
+  const navLinks = userType === 'advisor' 
+    ? [{ href: "/advisor", label: "Advisor" }]
+    : [
+        { href: "/schedule", label: "Schedule" },
+        { href: "/long-term", label: "Long Term" },
+        { href: "/requirements", label: "Requirements" },
+        { href: "/profile", label: "Profile" },
+      ]
 
   return (
     <>
