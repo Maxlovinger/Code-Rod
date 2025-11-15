@@ -1,8 +1,7 @@
 {
-  "/page": "app/page.js",
+  "/requirements/page": "app/requirements/page.js",
   "/profile/page": "app/profile/page.js",
+  "/page": "app/page.js",
   "/advisor-login/page": "app/advisor-login/page.js",
-  "/advisor/page": "app/advisor/page.js",
-  "/student/page": "app/student/page.js",
-  "/requirements/page": "app/requirements/page.js"
+  "/advisor/page": "app/advisor/page.js"
 }

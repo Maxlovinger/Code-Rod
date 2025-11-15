@@ -2,7 +2,7 @@ import type { Course, StudentProfile, Requirement, CompletedCourse } from "./typ
 import { HAVERFORD_COURSES } from './haverford-courses'
 
 // Mock course catalog
-export const mockCourses: Course[] = HAVERFORD_COURSES.map(course => ({
+export const mockCourses: any[] = HAVERFORD_COURSES.map(course => ({
   ...course,
   instructor: "Dr. Smith",
   meetingTimes: [
