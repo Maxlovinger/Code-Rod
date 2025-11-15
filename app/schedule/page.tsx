@@ -55,7 +55,14 @@ export default function SchedulePage() {
         setPlannedCourses(planned)
 
         // Get unique semesters
-        const semesters = [...new Set(planned.map(course => `${course.semester} ${course.year}`))]
+        const semesterStrings = planned.map(course => `${course.semester} ${course.year}`)
+        const uniqueSemesters: string[] = []
+        semesterStrings.forEach(semester => {
+          if (!uniqueSemesters.includes(semester)) {
+            uniqueSemesters.push(semester)
+          }
+        })
+        const semesters = uniqueSemesters
         setAvailableSemesters(semesters)
         
         if (semesters.length > 0 && !selectedSemester) {
