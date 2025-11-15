@@ -18,7 +18,7 @@ export default function StudentDashboard() {
           <div>
             <h1 className="text-2xl font-bold text-white">Student Dashboard</h1>
             <p className="text-white/70 mt-1">
-              Manage your academic journey at Haverford College
+              Manage your academic journey
             </p>
           </div>
         </div>

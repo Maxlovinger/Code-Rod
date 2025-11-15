@@ -1,10 +1,8 @@
 {
   "/page": "app/page.js",
-  "/advisor/page": "app/advisor/page.js",
-  "/student/page": "app/student/page.js",
-  "/long-term/page": "app/long-term/page.js",
   "/api/login/route": "app/api/login/route.js",
-  "/register/page": "app/register/page.js",
-  "/api/register/route": "app/api/register/route.js",
-  "/login/page": "app/login/page.js"
+  "/student/page": "app/student/page.js",
+  "/login/page": "app/login/page.js",
+  "/advisor/page": "app/advisor/page.js",
+  "/register/page": "app/register/page.js"
 }
