@@ -201,18 +201,6 @@ export default function HomePage() {
         </div>
 
         <nav className="hidden md:flex items-center space-x-8">
-          <Link href="/schedule" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
-            Schedule
-          </Link>
-          <Link href="/requirements" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
-            Requirements
-          </Link>
-          <Link href="/profile" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
-            Profile
-          </Link>
-          <Link href="/advisor" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
-            Advisor
-          </Link>
         </nav>
 
         <div className="flex items-center space-x-4">
@@ -231,31 +219,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      {mobileMenuOpen && (
-        <div className="md:hidden absolute top-20 left-0 right-0 bg-black/95 backdrop-blur-md border-b border-white/10 z-20 shadow-2xl">
-          <nav className="flex flex-col space-y-6 px-6 py-8">
-            <Link href="/schedule" className="text-white/80 hover:text-white transition-all duration-300 font-medium hover:translate-x-2">
-              Schedule
-            </Link>
-            <Link href="/requirements" className="text-white/80 hover:text-white transition-all duration-300 font-medium hover:translate-x-2">
-              Requirements
-            </Link>
-            <Link href="/profile" className="text-white/80 hover:text-white transition-all duration-300 font-medium hover:translate-x-2">
-              Profile
-            </Link>
-            <Link href="/advisor" className="text-white/80 hover:text-white transition-all duration-300 font-medium hover:translate-x-2">
-              Advisor
-            </Link>
-            <div className="pt-4 border-t border-white/10">
-              <Link href="/schedule">
-                <ShimmerButton className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-xl text-sm font-medium shadow-lg w-full border border-red-400/30">
-                  Get Started
-                </ShimmerButton>
-              </Link>
-            </div>
-          </nav>
-        </div>
-      )}
+
 
       <main className="relative z-10 flex flex-col items-start justify-center min-h-[calc(100vh-100px)] px-6 sm:px-12 lg:px-20 max-w-7xl mx-auto">
 

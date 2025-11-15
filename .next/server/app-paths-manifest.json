@@ -1,12 +1,7 @@
 {
-  "/api/login/route": "app/api/login/route.js",
-  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/advisor/page": "app/advisor/page.js",
-  "/student/page": "app/student/page.js",
   "/long-term/page": "app/long-term/page.js",
   "/advisor-login/page": "app/advisor-login/page.js",
-  "/requirements/page": "app/requirements/page.js",
   "/schedule/page": "app/schedule/page.js",
-  "/profile/page": "app/profile/page.js"
+  "/advisor/page": "app/advisor/page.js"
 }
