@@ -201,18 +201,18 @@ export default function HomePage() {
         </div>
 
         <nav className="hidden md:flex items-center space-x-8">
-          <Link href="/student" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
-            Student Portal
+          <Link href="/schedule" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
+            Schedule
+          </Link>
+          <Link href="/requirements" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
+            Requirements
+          </Link>
+          <Link href="/profile" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
+            Profile
           </Link>
           <Link href="/advisor" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
-            Advisor Portal
+            Advisor
           </Link>
-          <a href="#" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
-            About
-          </a>
-          <a href="#" className="text-white/80 hover:text-white transition-all duration-300 text-sm font-medium hover:scale-105">
-            Contact
-          </a>
         </nav>
 
         <div className="flex items-center space-x-4">
@@ -229,22 +229,24 @@ export default function HomePage() {
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-20 left-0 right-0 bg-black/95 backdrop-blur-md border-b border-white/10 z-20 shadow-2xl">
           <nav className="flex flex-col space-y-6 px-6 py-8">
-            <Link href="/student" className="text-white/80 hover:text-white transition-all duration-300 font-medium hover:translate-x-2">
-              Student Portal
+            <Link href="/schedule" className="text-white/80 hover:text-white transition-all duration-300 font-medium hover:translate-x-2">
+              Schedule
+            </Link>
+            <Link href="/requirements" className="text-white/80 hover:text-white transition-all duration-300 font-medium hover:translate-x-2">
+              Requirements
+            </Link>
+            <Link href="/profile" className="text-white/80 hover:text-white transition-all duration-300 font-medium hover:translate-x-2">
+              Profile
             </Link>
             <Link href="/advisor" className="text-white/80 hover:text-white transition-all duration-300 font-medium hover:translate-x-2">
-              Advisor Portal
+              Advisor
             </Link>
-            <a href="#" className="text-white/80 hover:text-white transition-all duration-300 font-medium hover:translate-x-2">
-              About
-            </a>
-            <a href="#" className="text-white/80 hover:text-white transition-all duration-300 font-medium hover:translate-x-2">
-              Contact
-            </a>
             <div className="pt-4 border-t border-white/10">
-              <ShimmerButton className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-xl text-sm font-medium shadow-lg w-full border border-red-400/30">
-                Get Started
-              </ShimmerButton>
+              <Link href="/schedule">
+                <ShimmerButton className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-xl text-sm font-medium shadow-lg w-full border border-red-400/30">
+                  Get Started
+                </ShimmerButton>
+              </Link>
             </div>
           </nav>
         </div>
@@ -273,7 +275,7 @@ export default function HomePage() {
           and stay on track for graduation.
         </p>
 
-        <Link href="/student">
+        <Link href="/schedule">
           <Button className="group relative bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base md:text-xs lg:text-lg font-semibold flex items-center gap-2 backdrop-blur-sm border border-red-400/30 shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/40 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
             Get Started
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 group-hover:-rotate-12 transition-transform duration-300" />
