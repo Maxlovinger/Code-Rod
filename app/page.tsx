@@ -24,38 +24,38 @@ export default function HomePage() {
             <defs>
               <radialGradient id="neonPulse1" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="rgba(255,255,255,1)" />
-                <stop offset="30%" stopColor="rgba(251,146,60,1)" />
-                <stop offset="70%" stopColor="rgba(249,115,22,0.8)" />
-                <stop offset="100%" stopColor="rgba(249,115,22,0)" />
+                <stop offset="30%" stopColor="rgba(239,68,68,1)" />
+                <stop offset="70%" stopColor="rgba(220,38,38,0.8)" />
+                <stop offset="100%" stopColor="rgba(220,38,38,0)" />
               </radialGradient>
               <radialGradient id="neonPulse2" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="rgba(255,255,255,0.9)" />
-                <stop offset="25%" stopColor="rgba(251,146,60,0.9)" />
-                <stop offset="60%" stopColor="rgba(234,88,12,0.7)" />
-                <stop offset="100%" stopColor="rgba(234,88,12,0)" />
+                <stop offset="25%" stopColor="rgba(239,68,68,0.9)" />
+                <stop offset="60%" stopColor="rgba(185,28,28,0.7)" />
+                <stop offset="100%" stopColor="rgba(185,28,28,0)" />
               </radialGradient>
               <radialGradient id="neonPulse3" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="rgba(255,255,255,1)" />
-                <stop offset="35%" stopColor="rgba(251,146,60,1)" />
-                <stop offset="75%" stopColor="rgba(234,88,12,0.6)" />
-                <stop offset="100%" stopColor="rgba(234,88,12,0)" />
+                <stop offset="35%" stopColor="rgba(239,68,68,1)" />
+                <stop offset="75%" stopColor="rgba(185,28,28,0.6)" />
+                <stop offset="100%" stopColor="rgba(185,28,28,0)" />
               </radialGradient>
               <linearGradient id="threadFade1" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(0,0,0,1)" />
-                <stop offset="15%" stopColor="rgba(249,115,22,0.8)" />
-                <stop offset="85%" stopColor="rgba(249,115,22,0.8)" />
+                <stop offset="15%" stopColor="rgba(220,38,38,0.8)" />
+                <stop offset="85%" stopColor="rgba(220,38,38,0.8)" />
                 <stop offset="100%" stopColor="rgba(0,0,0,1)" />
               </linearGradient>
               <linearGradient id="threadFade2" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(0,0,0,1)" />
-                <stop offset="12%" stopColor="rgba(251,146,60,0.7)" />
-                <stop offset="88%" stopColor="rgba(251,146,60,0.7)" />
+                <stop offset="12%" stopColor="rgba(239,68,68,0.7)" />
+                <stop offset="88%" stopColor="rgba(239,68,68,0.7)" />
                 <stop offset="100%" stopColor="rgba(0,0,0,1)" />
               </linearGradient>
               <linearGradient id="threadFade3" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(0,0,0,1)" />
-                <stop offset="18%" stopColor="rgba(234,88,12,0.8)" />
-                <stop offset="82%" stopColor="rgba(234,88,12,0.8)" />
+                <stop offset="18%" stopColor="rgba(185,28,28,0.8)" />
+                <stop offset="82%" stopColor="rgba(185,28,28,0.8)" />
                 <stop offset="100%" stopColor="rgba(0,0,0,1)" />
               </linearGradient>
               <filter id="neonGlow" x="-50%" y="-50%" width="200%" height="200%">
@@ -194,7 +194,7 @@ export default function HomePage() {
 
       <header className="relative z-10 flex items-center justify-between px-6 py-6 backdrop-blur-sm bg-black/20 border-b border-white/10">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-orange-500/25">
+          <div className="w-10 h-10 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-red-500/25">
             S
           </div>
           <div className="hidden sm:block">
@@ -223,7 +223,7 @@ export default function HomePage() {
             <Menu className="w-6 h-6" />
           </button>
 
-          <ShimmerButton className="hidden md:flex bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium shadow-lg shadow-orange-500/25 border border-orange-400/30">
+          <ShimmerButton className="hidden md:flex bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium shadow-lg shadow-red-500/25 border border-red-400/30">
             Get Started
           </ShimmerButton>
         </div>
@@ -245,7 +245,7 @@ export default function HomePage() {
               Contact
             </a>
             <div className="pt-4 border-t border-white/10">
-              <ShimmerButton className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-xl text-sm font-medium shadow-lg w-full border border-orange-400/30">
+              <ShimmerButton className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-xl text-sm font-medium shadow-lg w-full border border-red-400/30">
                 Get Started
               </ShimmerButton>
             </div>
@@ -277,7 +277,7 @@ export default function HomePage() {
         </p>
 
         <Link href="/student">
-          <Button className="group relative bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base md:text-xs lg:text-lg font-semibold flex items-center gap-2 backdrop-blur-sm border border-orange-400/30 shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/40 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
+          <Button className="group relative bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base md:text-xs lg:text-lg font-semibold flex items-center gap-2 backdrop-blur-sm border border-red-400/30 shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/40 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
             Get Started
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 group-hover:-rotate-12 transition-transform duration-300" />
             <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
