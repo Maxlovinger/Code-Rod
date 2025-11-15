@@ -67,7 +67,7 @@ export default function SchedulePage() {
     setCurrentSchedule((prev) => ({
       ...prev,
       totalCredits,
-      conflicts,
+      conflicts
     }))
   }, [currentSchedule.courses, studentProfile])
 
@@ -82,12 +82,12 @@ export default function SchedulePage() {
     const scheduledCourse: ScheduledCourse = {
       course,
       addedAt: new Date(),
-      status: "shopping",
+      status: "shopping"
     }
 
     setCurrentSchedule((prev) => ({
       ...prev,
-      courses: [...prev.courses, scheduledCourse],
+      courses: [...prev.courses, scheduledCourse]
     }))
 
     setShowCourseBrowser(false)
@@ -96,7 +96,7 @@ export default function SchedulePage() {
   const removeCourse = (courseId: string) => {
     setCurrentSchedule((prev) => ({
       ...prev,
-      courses: prev.courses.filter((sc) => sc.course.id !== courseId),
+      courses: prev.courses.filter((sc) => sc.course.id !== courseId)
     }))
   }
 
@@ -119,7 +119,7 @@ export default function SchedulePage() {
     return null
   }
 
-  const departments = ["All", ...new Set(mockCourses.map((c) => c.department))].sort()
+  const departments = ["All", ...Array.from(new Set(mockCourses.map((c) => c.department)))].sort()
 
   const filteredCourses = mockCourses.filter((course) => {
     const matchesSearch =
@@ -132,7 +132,6 @@ export default function SchedulePage() {
       selectedDepartment === "All" || course.department === selectedDepartment
 
     const notAlreadyAdded = !currentSchedule.courses.some((sc) => sc.course.id === course.id)
-
     const notCompleted = !studentProfile.completedCourses.some((c) => c.courseId === course.id)
 
     return matchesSearch && matchesDepartment && notAlreadyAdded && notCompleted
@@ -154,7 +153,7 @@ export default function SchedulePage() {
       "bg-purple-500/20 border-purple-500/40 text-purple-200 backdrop-blur-md",
       "bg-orange-500/20 border-orange-500/40 text-orange-200 backdrop-blur-md",
       "bg-pink-500/20 border-pink-500/40 text-pink-200 backdrop-blur-md",
-      "bg-cyan-500/20 border-cyan-500/40 text-cyan-200 backdrop-blur-md",
+      "bg-cyan-500/20 border-cyan-500/40 text-cyan-200 backdrop-blur-md"
     ]
 
     // Use course ID to consistently assign colors

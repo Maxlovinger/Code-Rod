@@ -1,7 +1,22 @@
 import type { Course, StudentProfile, Requirement, CompletedCourse } from "./types"
+import { HAVERFORD_COURSES } from './haverford-courses'
 
 // Mock course catalog
-export const mockCourses: Course[] = [
+export const mockCourses: Course[] = HAVERFORD_COURSES.map(course => ({
+  ...course,
+  instructor: "Dr. Smith",
+  meetingTimes: [
+    { day: "Monday", startTime: "10:00", endTime: "11:00" },
+    { day: "Wednesday", startTime: "10:00", endTime: "11:00" },
+    { day: "Friday", startTime: "10:00", endTime: "11:00" },
+  ],
+  corequisites: [],
+  semester: "Fall",
+  year: 2024,
+  maxEnrollment: 25,
+  currentEnrollment: 15,
+  location: "TBD",
+})).concat([
   // Computer Science
   {
     id: "cs-101",
@@ -314,7 +329,7 @@ export const mockCourses: Course[] = [
     currentEnrollment: 0,
     location: "KINSC L108",
   },
-]
+])
 
 // Mock student profile
 export const mockStudentProfile: StudentProfile = {

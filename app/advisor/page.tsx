@@ -119,7 +119,10 @@ export default function AdvisorDashboard() {
 
           <div className="divide-y divide-white/10">
             {students.map((student) => (
-              <div key={student.id} className="p-6 bg-white/5 border-b border-white/10 hover:bg-white/10 transition-colors">
+              <div 
+                key={student.id} 
+                className="p-6 bg-white/5 border-b border-white/10 hover:bg-white/10 transition-colors"
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <div className="flex items-center mb-2">
@@ -157,7 +160,7 @@ export default function AdvisorDashboard() {
                                 : 'bg-gradient-to-r from-red-500 to-red-600 shadow-lg shadow-red-500/50'
                             }`}
                             style={{ width: `${(student.creditsCompleted / student.totalCredits) * 100}%` }}
-                          ></div>
+                          />
                         </div>
                       </div>
                     </div>

@@ -216,13 +216,18 @@ export default function HomePage() {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <button className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <button 
+            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
             <Menu className="w-6 h-6" />
           </button>
 
-          <ShimmerButton className="hidden md:flex bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium shadow-lg shadow-red-500/25 border border-red-400/30">
-            Get Started
-          </ShimmerButton>
+          <Link href="/register">
+            <ShimmerButton className="hidden md:flex bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium shadow-lg shadow-red-500/25 border border-red-400/30">
+              Get Started
+            </ShimmerButton>
+          </Link>
         </div>
       </header>
 
@@ -275,13 +280,23 @@ export default function HomePage() {
           and stay on track for graduation.
         </p>
 
-        <Link href="/schedule">
-          <Button className="group relative bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base md:text-xs lg:text-lg font-semibold flex items-center gap-2 backdrop-blur-sm border border-red-400/30 shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/40 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
-            Get Started
-            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 group-hover:-rotate-12 transition-transform duration-300" />
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </Button>
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Link href="/login">
+            <Button className="group relative bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base md:text-xs lg:text-lg font-semibold flex items-center gap-2 backdrop-blur-sm border border-red-400/30 shadow-lg shadow-red-500/25 hover:shadow-xl hover:shadow-red-500/40 transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
+              Student Login
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 group-hover:-rotate-12 transition-transform duration-300" />
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </Button>
+          </Link>
+          
+          <Link href="/advisor">
+            <Button className="group relative bg-gradient-to-r from-white/10 to-white/20 hover:from-white/20 hover:to-white/30 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base md:text-xs lg:text-lg font-semibold flex items-center gap-2 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
+              Advisor Login
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 group-hover:-rotate-12 transition-transform duration-300" />
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </Button>
+          </Link>
+        </div>
       </main>
     </div>
   )

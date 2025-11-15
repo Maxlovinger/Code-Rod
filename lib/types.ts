@@ -154,6 +154,6 @@ export interface CourseFilters {
 }
 
 export interface SortOption {
-  field: "code" | "title" | "credits" | "enrollment" | "department"
+  field: "code" | "title" | "credits" | "currentEnrollment" | "department"
   direction: "asc" | "desc"
 }

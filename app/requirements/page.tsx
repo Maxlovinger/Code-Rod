@@ -150,8 +150,7 @@ export default function RequirementsPage() {
             {remainingCredits > 0 && (
               <div className="mt-4 pt-4 border-t border-white/10">
                 <p className="text-sm text-white/80">
-                  <span className="font-semibold">{remainingCredits} credits</span> remaining to
-                  graduate
+                  <span className="font-semibold">{remainingCredits} credits</span> remaining to graduate
                 </p>
               </div>
             )}
@@ -276,9 +275,7 @@ export default function RequirementsPage() {
                             <div className="mt-3">
                               <div className="h-2 bg-white/20 rounded-full overflow-hidden">
                                 <div
-                                  className={`h-full transition-all duration-500 ${getProgressColor(
-                                    progress
-                                  )}`}
+                                  className={`h-full transition-all duration-500 ${getProgressColor(progress)}`}
                                   style={{ width: `${progress}%` }}
                                 />
                               </div>
@@ -347,9 +344,7 @@ export default function RequirementsPage() {
                   Congratulations! You're Ready to Graduate
                 </h3>
                 <p className="text-green-200 mt-2">
-                  You've completed all degree requirements for {studentProfile.major}. Expected
-                  graduation: {studentProfile.expectedGraduation.semester}{" "}
-                  {studentProfile.expectedGraduation.year}
+                  You've completed all degree requirements for {studentProfile.major}. Expected graduation: {studentProfile.expectedGraduation.semester} {studentProfile.expectedGraduation.year}
                 </p>
               </div>
             </div>
@@ -361,10 +356,7 @@ export default function RequirementsPage() {
               <div>
                 <h3 className="text-lg font-semibold text-red-300">On Track to Graduate</h3>
                 <p className="text-red-200 mt-2">
-                  Complete {remainingCredits} more credits to meet all requirements for{" "}
-                  {studentProfile.major}. Expected graduation:{" "}
-                  {studentProfile.expectedGraduation.semester}{" "}
-                  {studentProfile.expectedGraduation.year}
+                  Complete {remainingCredits} more credits to meet all requirements for {studentProfile.major}. Expected graduation: {studentProfile.expectedGraduation.semester} {studentProfile.expectedGraduation.year}
                 </p>
               </div>
             </div>

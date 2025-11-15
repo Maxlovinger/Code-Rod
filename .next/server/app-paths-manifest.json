@@ -1,7 +1,10 @@
 {
   "/page": "app/page.js",
-  "/schedule/page": "app/schedule/page.js",
-  "/requirements/page": "app/requirements/page.js",
   "/advisor/page": "app/advisor/page.js",
-  "/profile/page": "app/profile/page.js"
+  "/student/page": "app/student/page.js",
+  "/long-term/page": "app/long-term/page.js",
+  "/api/login/route": "app/api/login/route.js",
+  "/register/page": "app/register/page.js",
+  "/api/register/route": "app/api/register/route.js",
+  "/login/page": "app/login/page.js"
 }
