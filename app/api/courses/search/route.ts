@@ -159,7 +159,7 @@ export async function POST(request: NextRequest) {
     // Apply day of week filter
     if (filters.daysOfWeek && filters.daysOfWeek.length > 0) {
       filteredCourses = filteredCourses.filter((course) =>
-        course.meetingTimes.some((slot) =>
+        course.meetingTimes.some((slot: any) =>
           filters.daysOfWeek!.includes(slot.day)
         )
       )
@@ -170,7 +170,7 @@ export async function POST(request: NextRequest) {
       const { start, end } = filters.timeRange
       filteredCourses = filteredCourses.filter((course) =>
         course.meetingTimes.some(
-          (slot) => slot.startTime >= start && slot.endTime <= end
+          (slot: any) => slot.startTime >= start && slot.endTime <= end
         )
       )
     }
@@ -178,7 +178,7 @@ export async function POST(request: NextRequest) {
     // Apply requirements filter
     if (filters.fulfillsRequirements && filters.fulfillsRequirements.length > 0) {
       filteredCourses = filteredCourses.filter((course) =>
-        course.fulfills.some((req) =>
+        course.fulfills.some((req: any) =>
           filters.fulfillsRequirements!.includes(req)
         )
       )
