@@ -285,7 +285,7 @@ export default function HomePage() {
             </Button>
           </Link>
           
-          <Link href="/advisor">
+          <Link href="/advisor-login">
             <Button className="group relative bg-gradient-to-r from-white/10 to-white/20 hover:from-white/20 hover:to-white/30 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base md:text-xs lg:text-lg font-semibold flex items-center gap-2 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-0.5">
               Advisor Login
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 group-hover:-rotate-12 transition-transform duration-300" />

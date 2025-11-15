@@ -28,13 +28,20 @@ export default function LoginPage() {
       const result = await response.json()
 
       if (response.ok) {
+        // Check if user is a student
+        if (result.userType !== 'student') {
+          setError('This login is for students only. Please use Advisor Login.')
+          setLoading(false)
+          return
+        }
+
         // Store user data in localStorage
         localStorage.setItem('userEmail', formData.email)
         localStorage.setItem('userName', result.user.fullName)
         localStorage.setItem('userType', result.userType)
-        
-        // Redirect based on user type
-        window.location.href = result.userType === 'student' ? '/student' : '/advisor'
+
+        // Redirect to student dashboard
+        window.location.href = '/student'
       } else {
         setError(result.error)
       }
@@ -57,8 +64,8 @@ export default function LoginPage() {
         
         <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg shadow-lg shadow-red-500/10 p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-            <p className="text-white/70">Sign in to your account</p>
+            <h1 className="text-3xl font-bold text-white mb-2">Student Login</h1>
+            <p className="text-white/70">Sign in to your student account</p>
           </div>
 
           {error && (
@@ -108,15 +115,15 @@ export default function LoginPage() {
               disabled={loading}
               className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 shadow-lg shadow-red-500/25 border border-red-400/30 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? 'Signing In...' : 'Sign In'}
+              {loading ? 'Signing In...' : 'Sign In as Student'}
             </button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-white/60 text-sm">
-              Don't have an account?{" "}
-              <Link href="/register" className="text-red-400 hover:text-red-300 transition-colors">
-                Sign up here
+              Are you an advisor?{" "}
+              <Link href="/advisor-login" className="text-red-400 hover:text-red-300 transition-colors">
+                Use Advisor Login
               </Link>
             </p>
           </div>
