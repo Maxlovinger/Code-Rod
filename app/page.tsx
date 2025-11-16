@@ -204,15 +204,8 @@ export default function HomePage() {
         </nav>
 
         <div className="flex items-center space-x-4">
-          <button 
-            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors" 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <Menu className="w-6 h-6" />
-          </button>
-
           <Link href="/register">
-            <ShimmerButton className="hidden md:flex bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium shadow-lg shadow-red-500/25 border border-red-400/30">
+            <ShimmerButton className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2.5 rounded-xl text-sm font-medium shadow-lg shadow-red-500/25 border border-red-400/30">
               Get Started
             </ShimmerButton>
           </Link>

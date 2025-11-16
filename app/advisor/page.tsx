@@ -118,14 +118,20 @@ export default function AdvisorDashboard() {
 
               const totalCreditsEarned = creditsCompleted + plannedCredits
 
-              // Map class year to year label
-              const yearLabels: { [key: number]: string } = {
-                2025: 'Senior',
-                2026: 'Junior',
-                2027: 'Sophomore',
-                2028: 'Freshman'
+              // Map class year to year label based on current year
+              const currentYear = new Date().getFullYear()
+              const yearsUntilGraduation = student.class_year - currentYear
+              let yearLabel = `Class of ${student.class_year}`
+              
+              if (yearsUntilGraduation === 0) {
+                yearLabel = 'Senior'
+              } else if (yearsUntilGraduation === 1) {
+                yearLabel = 'Junior'
+              } else if (yearsUntilGraduation === 2) {
+                yearLabel = 'Sophomore'
+              } else if (yearsUntilGraduation === 3) {
+                yearLabel = 'First Year'
               }
-              const yearLabel = yearLabels[student.class_year] || `Class of ${student.class_year}`
 
               // Determine if student is on track (out of 32 total credits needed)
               const onTrack = totalCreditsEarned >= 28 // Allow 4 credit buffer from 32
@@ -457,16 +463,7 @@ export default function AdvisorDashboard() {
                     <p className="text-white/60 text-sm">Credits Completed</p>
                     <p className="text-2xl font-bold text-white">{selectedStudent.creditsCompleted}/{selectedStudent.totalCredits}</p>
                   </div>
-                  <div>
-                    <p className="text-white/60 text-sm">Status</p>
-                    <span className={`inline-flex px-3 py-1 rounded-full text-sm font-medium border mt-2 ${
-                      selectedStudent.onTrack
-                        ? 'bg-green-500/10 border-green-500/30 text-green-300'
-                        : 'bg-red-500/10 border-red-500/30 text-red-300'
-                    }`}>
-                      {selectedStudent.onTrack ? 'On Track' : 'Needs Attention'}
-                    </span>
-                  </div>
+
                 </div>
 
                 {/* Progress Bar */}
